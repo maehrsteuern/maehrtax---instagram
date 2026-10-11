@@ -1,4 +1,5 @@
 name: Fetch music
+# PAUSED since 10/11/2026 (focus on @maehrsteuern DE): runs only if the repo variable MAEHRTAX_ACTIVE is 'true'.
 # One-off / on demand: fetch 5 public-domain tracks (CC0) from the Internet Archive into music/.
 on:
   workflow_dispatch:
@@ -9,7 +10,7 @@ permissions:
   contents: write
 jobs:
   music:
-    if: github.repository == 'maehrsteuern/maehrtax---instagram'
+    if: github.repository == 'maehrsteuern/maehrtax---instagram' && vars.MAEHRTAX_ACTIVE == 'true'
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7

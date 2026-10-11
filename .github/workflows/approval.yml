@@ -1,4 +1,5 @@
 name: Approval
+# PAUSED since 10/11/2026 (focus on @maehrsteuern DE): runs only if the repo variable MAEHRTAX_ACTIVE is 'true'.
 # New drafts in plan.json → issue with preview. Reply "go"/"stop" in the issue → status in plan.json.
 on:
   push:
@@ -15,7 +16,7 @@ jobs:
     # own group: in instagram-plan the 15-min post run would push out a waiting approval run.
     # plan.json is merged via pull --rebase.
     concurrency: { group: approval, cancel-in-progress: false }
-    if: github.repository == 'maehrsteuern/maehrtax---instagram' && github.event_name != 'issue_comment'
+    if: github.repository == 'maehrsteuern/maehrtax---instagram' && vars.MAEHRTAX_ACTIVE == 'true' && github.event_name != 'issue_comment'
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7
@@ -30,7 +31,7 @@ jobs:
       cancel-in-progress: false
     # only comments by the account owner in approval issues
     if: >-
-      github.repository == 'maehrsteuern/maehrtax---instagram' &&
+      github.repository == 'maehrsteuern/maehrtax---instagram' && vars.MAEHRTAX_ACTIVE == 'true' &&
       github.event_name == 'issue_comment' &&
       github.event.comment.user.login == github.repository_owner &&
       contains(github.event.issue.labels.*.name, 'approval')

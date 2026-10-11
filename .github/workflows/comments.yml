@@ -1,4 +1,5 @@
 name: Comments
+# PAUSED since 10/11/2026 (focus on @maehrsteuern DE): runs only if the repo variable MAEHRTAX_ACTIVE is 'true'.
 # After every post run (every 15 min): new comments under your own posts with a reply suggestion into the issue
 # "💬 Reply to comments". Reply "C12 ok" / "C12 your own text" in the issue → posted as a reply.
 # Never sends DMs – ManyChat does that. Comments with a ManyChat keyword are skipped.
@@ -15,7 +16,7 @@ permissions:
 jobs:
   check:
     concurrency: { group: comments, cancel-in-progress: false }
-    if: github.repository == 'maehrsteuern/maehrtax---instagram' && github.event_name != 'issue_comment'
+    if: github.repository == 'maehrsteuern/maehrtax---instagram' && vars.MAEHRTAX_ACTIVE == 'true' && github.event_name != 'issue_comment'
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7
@@ -38,7 +39,7 @@ jobs:
       cancel-in-progress: false
     # only comments by the account owner in the comments issue
     if: >-
-      github.repository == 'maehrsteuern/maehrtax---instagram' &&
+      github.repository == 'maehrsteuern/maehrtax---instagram' && vars.MAEHRTAX_ACTIVE == 'true' &&
       github.event_name == 'issue_comment' &&
       github.event.comment.user.login == github.repository_owner &&
       contains(github.event.issue.labels.*.name, 'comments')

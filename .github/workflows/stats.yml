@@ -1,4 +1,5 @@
 name: Instagram stats
+# PAUSED since 10/11/2026 (focus on @maehrsteuern DE): runs only if the repo variable MAEHRTAX_ACTIVE is 'true'.
 # Daily around 9:00 AM ET: fetch the numbers and store them in automation/stats/. Can be started by hand.
 # Main trigger is status.yml (8:40–10:00 AM ET, reliable thanks to the 15-min post run);
 # the schedule here is only the backup in case GitHub runs it at all (UTC: 9:47 AM EDT / 8:47 AM EST).
@@ -13,7 +14,7 @@ permissions:
   contents: write
 jobs:
   stats:
-    if: github.repository == 'maehrsteuern/maehrtax---instagram'
+    if: github.repository == 'maehrsteuern/maehrtax---instagram' && vars.MAEHRTAX_ACTIVE == 'true'
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7
