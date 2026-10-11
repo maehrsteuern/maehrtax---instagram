@@ -161,6 +161,8 @@ Raw data: `automation/stats/`, analysis: `strategy/06_analytics.md`
 - 2:26 AM 💬 Comments/Stats: show Meta's error reason instead of bare 400 (#19) ([`5c659b8`](https://github.com/maehrsteuern/maehrtax---instagram/commit/5c659b88349bf10c6f464ce6905cd3485a9a623c))
   - `automation/comments.py`, `automation/stats.py`, `automation/status_notes.md`
 
+<details><summary>Older than 7 days</summary>
+
 **Sun 10/4/2026**
 - 2:24 PM 📡 Radar 2026-10-04: 10 posts, 0 DM drafts ([`956f69f`](https://github.com/maehrsteuern/maehrtax---instagram/commit/956f69f9a5552c21c5b5f318efd803fec010b43b))
   - `automation/interaction`
@@ -225,3 +227,5 @@ Raw data: `automation/stats/`, analysis: `strategy/06_analytics.md`
   - `strategy/17_cowork_prompt.md`
 - 3:10 AM ✍️ Englische Schwester (@maehrtax): neue Grundstruktur, US-Briefing und Startplan 11.–25.10. ([`0917b8f`](https://github.com/maehrsteuern/maehrtax---instagram/commit/0917b8fef1a6818012e43e75f67e24d433a2b2e5))
   - Plan: 31 entries created
+
+</details>
