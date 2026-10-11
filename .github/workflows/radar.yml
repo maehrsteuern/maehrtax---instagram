@@ -1,4 +1,5 @@
 name: Radar
+# PAUSED since 10/11/2026 (focus on @maehrsteuern DE): runs only if the repo variable MAEHRTAX_ACTIVE is 'true'.
 # Daily in the morning: work list for commenting/DMs/collabs as an issue (automation/radar.py)
 # and LinkedIn packages for approved carousels (automation/linkedin.py – off unless enabled in interaction.json).
 # Never posts or writes by itself. Main trigger is status.yml (7:00–10:00 AM ET, if no run today yet);
@@ -15,7 +16,7 @@ permissions:
   issues: write
 jobs:
   radar:
-    if: github.repository == 'maehrsteuern/maehrtax---instagram'
+    if: github.repository == 'maehrsteuern/maehrtax---instagram' && vars.MAEHRTAX_ACTIVE == 'true'
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7

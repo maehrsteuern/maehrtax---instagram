@@ -1,4 +1,5 @@
 name: Status
+# PAUSED since 10/11/2026 (focus on @maehrsteuern DE): runs only if the repo variable MAEHRTAX_ACTIVE is 'true'.
 # Rewrites STATUS.md + STATUS.html (automation/status.py): after every push, after every run of the other
 # workflows and every morning. STATUS.html goes to GitHub Pages as the visual status page (job "page", only when
 # something changed): https://maehrsteuern.github.io/maehrtax---instagram/
@@ -27,7 +28,7 @@ permissions:
 jobs:
   status:
     # only in the US repo – never in the German sister repo
-    if: github.repository == 'maehrsteuern/maehrtax---instagram'
+    if: github.repository == 'maehrsteuern/maehrtax---instagram' && vars.MAEHRTAX_ACTIVE == 'true'
     runs-on: ubuntu-24.04
     outputs:
       new: ${{ steps.save.outputs.new }}
@@ -107,7 +108,7 @@ jobs:
     needs: status
     # errors here (e.g. Pages not switched on yet) do not turn the status red – STATUS.md is already saved
     continue-on-error: true
-    if: ${{ !cancelled() && github.repository == 'maehrsteuern/maehrtax---instagram' && (needs.status.outputs.new == '1' || github.event_name == 'push' || github.event_name == 'workflow_dispatch') }}
+    if: ${{ !cancelled() && github.repository == 'maehrsteuern/maehrtax---instagram' && vars.MAEHRTAX_ACTIVE == 'true' && (needs.status.outputs.new == '1' || github.event_name == 'push' || github.event_name == 'workflow_dispatch') }}
     runs-on: ubuntu-24.04
     permissions:
       contents: read

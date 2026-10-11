@@ -1,4 +1,5 @@
 name: Instagram post
+# PAUSED since 10/11/2026 (focus on @maehrsteuern DE): runs only if the repo variable MAEHRTAX_ACTIVE is 'true'.
 # Every 15 minutes (GitHub sometimes skips scheduled runs) check whether an approved entry is due within the next
 # 75 minutes (see automation/plan.json, times in ET). An external cron (cron-job.org) can trigger post.yml too.
 on:
@@ -21,7 +22,7 @@ permissions:
 jobs:
   post:
     # only in the US repo – never in the German sister repo
-    if: github.repository == 'maehrsteuern/maehrtax---instagram'
+    if: github.repository == 'maehrsteuern/maehrtax---instagram' && vars.MAEHRTAX_ACTIVE == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 120
     steps:

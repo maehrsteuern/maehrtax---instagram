@@ -1,4 +1,5 @@
 name: Refresh Instagram key
+# PAUSED since 10/11/2026 (focus on @maehrsteuern DE): runs only if the repo variable MAEHRTAX_ACTIVE is 'true'.
 # On the 1st of every month; a key is valid for 60 days. Can be started by hand.
 # Also refreshes the Facebook key for the radar. Without the secrets every step skips cleanly.
 on:
@@ -9,7 +10,7 @@ permissions:
   contents: write
 jobs:
   token:
-    if: github.repository == 'maehrsteuern/maehrtax---instagram'
+    if: github.repository == 'maehrsteuern/maehrtax---instagram' && vars.MAEHRTAX_ACTIVE == 'true'
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7
